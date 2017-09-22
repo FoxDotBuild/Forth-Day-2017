@@ -6,6 +6,7 @@ I will write the days agenda here.
 
  * [Online Whiteboard](https://webwhiteboard.com/board/c4cvgf4e)
  * [Forth Solver](http://sovietov.com/app/forthwiz.html) - While you're learning to juggle.
+
 # Pre-Event Resources
 
  * [20 minute quick start](https://learnxinyminutes.com/docs/forth/) Useful if you have a firm grasp of programming concepts.
