@@ -1,28 +1,50 @@
 # Welcome
+
 # About Me
+
 # About You
  * Experience Levels
  * Backgrounds
  * Goals
+
 # History
+ * Chuck Moore
+ * First project
+ * 80's Heyday
+ * Current status
+
 # Common Use Cases for Forth
+ * Firmware
+ * Firmware
+ * Resource constrained applications
+ * Firmware
+
 # Advantages
  * Can be easily ported to new systems / platforms
-# Cool Stuff
+ * _very_ resource efficient
+ * "Low Floor, High Ceiling"
+
+# Real World Forth
+ TODO: Add clickable links.
  * GA 144
  * Bubble
  * Fignition
  * Satellite stuff
  * Various "hobby forths"
+
 # Why Bother?
- * Low level concepts are easier to understand
- * Makes you a better programmer
- * The only language a developer can _completely_ understand quickly.
  * It's fun!
+ * Makes you a better programmer
+ * Influences your understanding of other languages.
+ * The only language a developer can _completely_ understand quickly.
+ * Low level concepts are easier
+ * Less tooling to learn than C
+
 # Minimalism
- * No GC.
- * No Floats.
- * No Types.
+ * No Garbage Collector
+ * (sometimes) No Floating Point Numbers
+ * No Type System / Type Checker
+
 # Course Format Explanation
  * Setup
    * Terminal
@@ -30,64 +52,44 @@
    * Check that all the expected words are there
    * Install a "whoops" marker
    * Talk about lecture/lab format
-# Minimal Computers
-  * Thermostat (bring one in and run it as an example)
-  * Fire alarm
-   * instructions, processor, memory, registers
-     * Thinking in symbols
-       * Machine language, assembly language, high level language
-     * Fetch, decode, execute
-     * Run Easy6502 or cardiac example?
-     * jump, add, sub, read, write
-   * Input, output, interrupts
- * Computer numbering systems.
-   * Bits, nibbles, bytes, floats
- * Boolean logic
-   * True, false, AND, OR, XOR, NOT, etc
-   * Uses?
-     * Real world users
-   * Explain "low floor, high ceiling"
-   * Forth vs. other languages
-   * LAB: `." Hello, world!"`
-   * LAB: "Hello, {{ name }}"
-   * LAB: "It's over {{ 9000 }}"
-   * LAB: Create a marker `poof!` (more later)
+# Hello, World!
+  * LAB: Create a marker `poof!` (more later)
+  * LAB: `." Hello, world!"`
+# Basic Math
+  * LAB: 3rd grade math class
+# The Stack
    * LAB: `.s`, `.` and the stack
    * LAB: RPN, `+`, `-`, `dup`, `swap`
+# I/O
+   * LAB: "Hello, {{ name }}"
+   * LAB: "It's over {{ 9000 }}"
+# -------
    * LAB: `words`
    * LAB: Create your own words `: add2 2 + ; words`
    * LAB: Redefine a word
    * LAB: Create a new marker
    * LAB: Create a constant
-   * Pointers and memory management
-     * LAB: Create a variable
-     * LAB: Read a variable
-     * LAB: Create a `FOO+!` word
-     * LAB: Create a `FOO@` word
-   * CONDTIONALS
-     * LAB: Can/Can't drink beer
-   * LOOPS
-     * LAB: 3 2 1 blastoff
- * Forth, meet arduino
-   * pin layout
-   * memory layout
-   * interupts
-   * PIN, PORT, DDRs
-     * Maybe I will pre-flash a library for this one
+   * LAB: Create a variable
+   * LAB: Read a variable
+   * LAB: Create a `FOO+!` word
+   * LAB: Create a `FOO@` word
+   * LAB: Can/Can't drink beer
+   * LAB: 3 2 1 blastoff
    * LAB: Blink
    * LAB: Push to blink
    * LAB: PWM write
    * LAB PWM read
    * LAB: Fire alarm
- * Next steps (part II?)
-   * "big" Forths
-   * Execution tokens
-   * Vectored execution
-   * Compile vs. interpret
-   * inner vs. outter interpreter
-   * Defining words
-   * Tasks
-   * Vocabularies
-   * Dictionary structure
-   * recursion
-   * Stephen's Book
+
+# Next steps (part II?)
+ * "big" Forths
+ * Execution tokens
+ * Vectored execution
+ * Compile vs. interpret
+ * inner vs. outter interpreter
+ * Defining words
+ * Tasks
+ * Vocabularies
+ * Dictionary structure
+ * recursion
+ * Stephen's Book
