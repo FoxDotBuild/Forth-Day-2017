@@ -1,65 +1,195 @@
 # Welcome
 
-# About Me
+---
+
+# About Us
+
+---
 
 # About You
  * Experience Levels
  * Backgrounds
  * Goals
 
+---
+
 # What Are We Doing Today?
- * Learn how computers work through Forth.
+
+ * Use Forth to understand _low level_ computer concepts.
  * A few lab experiments
 
+---
+
 # History
+
  * Chuck Moore
- * First project
- * 80's Heyday
+ * First Forth projects
+ * Rise of popularity in the early 80's
  * Forth today
 
+---
+
 # Common Use Cases for Forth
+
  * Firmware
  * Firmware
  * Resource constrained applications
  * Firmware
 
+---
+
 # Advantages
- * Can be easily ported to new systems / platforms
- * _very_ resource efficient
+
+ * Can be easily ported to new systems / platforms (anything can run Forth)
+ * _Very_ resource efficient (minimal memory requirements)
  * "Low Floor, High Ceiling"
 
+---
+
 # Real World Forth
+
  * [Power Plant Control Systems](https://www.forth.com/solar-power-plant-controls/)
  * [Philae Lander](https://en.wikipedia.org/wiki/Philae_(spacecraft))
- * [Fignition](https://www.rs-online.com/designspark/fignition-gets-a-keyboard)
+ * [Hobbyist Projects](https://www.rs-online.com/designspark/fignition-gets-a-keyboard)
  * GA 144
 
+---
+
 # Why Bother?
+
  * It's fun!
- * Less tooling to learn than C
+ * Less tooling and setup than C
  * The only language a developer can _completely_ understand quickly.
  * Makes you a better programmer
  * Influences your understanding of other languages.
- * Low level concepts are easier
+ * Low level concepts are easier to understand.
+
+---
 
 # Minimalism
+
  * No Garbage Collector
- * (sometimes) No Floating Point Numbers
- * No Type System / Type Checker
+ * No Floating Point Numbers (sometimes)
+ * No Type System or Type Checker (everything is an integer)
 
-# Let's Talk About Computers
+---
 
-http://www.columbia.edu/cu/computinghistory/kl-10-fp-1.jpg
+# The Computer We Will Use Today
 
-# Bare Minimum Computing
+http://www.microchip.com/wwwproducts/en/ATmega328P
 
-# Processors, Memory and I/O
+---
 
+# Detour: What _is_ A Computer, Really?
+
+ * Processor
+ * Memory
+ * Input lines
+ * Output lines
+
+---
+
+# What Is Memory?
+
+It's like a **spreadsheet for integers**. Memory has many *addresses* that hold *values*.
+
+|Address|Value (decimal)|
+|---	|---	|
+| 0| 24|
+| 1| 13|
+| 2| 27|
+| 3| 255|
+| 4| 37|
+| 5| 0|
+| 6| 42|
+| 7| 86|
+
+---
+
+# Arduino Memory
+
+|Kind|Size|
+|--- |--- |
+|Flash | 32 kB|
+|RAM | 2 kB|
+|ROM | 1 kB|
+
+---
+
+# The Importance of Symbols
+
+Computers require **symbolic thinking**.
+
+|Instead of...|Let's say...|
+|---	|---	|
+| A| 65|
+| 65| 1011|
+|1011|high, low, high, high|
+|high, low, high, high| A|
+
+At a low level, **Computers _only_ understand numbers**!
+
+All concepts must be symbolized as numbers or sequences of numbers.
+
+---
+
+# What Is a Processor?
+
+Performs calculations and actions, usually with the contents of memory addresses.
+
+Example: Read address, write address, **execute address*.
+
+---
+
+# What About Input / Output Lines?
+
+Convert voltage fluctuations to numbers which are usually stored in memory.
+
+That's it. Keyboards, monitors, WiFi cards all work like this.
+
+https://sites.google.com/site/lofturj/cwreceive
+
+What's going on inside the chip?
+
+---
+
+# What Just Happened?
+
+http://cs-alb-pc3.massey.ac.nz/notes/59304/l15.html
+
+1. Computer senses an incoming signal
+2. Computer stores signal value in a memory address
+3. Computer processes the value, often storing the result in a new address
+4. Computer writes to certain special addresses, that cause signals to be sent back out (output)
+
+---
+
+# More Examples of I/O Operations
+
+https://www.youtube.com/watch?v=vAhp_LzvSWk
 https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ATMEGA328P-PU.jpg/1200px-ATMEGA328P-PU.jpg
 http://www.digital-circuitry.com/IMAGES/webpage/MyLAB/Z80_DATA_BUS.jpg
 http://www.digital-circuitry.com/IMAGES/webpage/MyLAB/Z80_ADDRESS_BUS.jpg
 
-# Start Actually Learning Forth Now
+---
+
+# Machine Language, Assembly, High Level Language
+
+http://oldcomputers.net/altair-8800.html
+https://www.computerhope.com/jargon/p/punccard.htm
+
+---
+
+# Recap: How do computers actually _do_ things?
+
+http://jayakarthigeyan.blogspot.com/2014/08/fire-alarm-using-arduino.html
+Input:
+Sense things -> digitize -> send to input line
+Do things    -> read output -> decode -> send to real word (motors, speakers, etc)
+
+---
+
+# Start Learning Forth Now
 
 # Lab Setup
    * Terminal
@@ -73,6 +203,8 @@ http://www.digital-circuitry.com/IMAGES/webpage/MyLAB/Z80_ADDRESS_BUS.jpg
 # Basic Math
   * LAB: 3rd grade math class
 # The Stack
+http://www.alcula.com/calculators/rpn/
+
    * LAB: `.s`, `.` and the stack
    * LAB: RPN, `+`, `-`, `dup`, `swap`
 # I/O
