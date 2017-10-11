@@ -16,10 +16,11 @@
 # What Are We Doing Today?
 
  * Use Forth to understand _low level_ computer concepts.
- * A few lab experiments
+ * Focus will be Arduino, but the concepts apply to all computers and languages.
+   * Intentionally focusing on small / old comuters to reduce conceptual load
+ * There will be A few lab experiments.
 
 ---
-
 # History
 
  * Chuck Moore
@@ -32,15 +33,15 @@
 # Common Use Cases for Forth
 
  * Firmware
- * Firmware
  * Resource constrained applications
  * Firmware
+ * And occasionally Firmware
 
 ---
 
 # Advantages
 
- * Can be easily ported to new systems / platforms (anything can run Forth)
+ * Even the tiniest devices can run Forth- easily ported to new systems.
  * _Very_ resource efficient (minimal memory requirements)
  * "Low Floor, High Ceiling"
 
@@ -71,6 +72,7 @@
  * No Garbage Collector
  * No Floating Point Numbers (sometimes)
  * No Type System or Type Checker (everything is an integer)
+ * Compiled *and* interpreted!
 
 ---
 
@@ -86,12 +88,17 @@ http://www.microchip.com/wwwproducts/en/ATmega328P
  * Memory
  * Input lines
  * Output lines
+ * Other lines (power, reset, clock, etc.)
+
+http://cs-alb-pc3.massey.ac.nz/notes/59304/l15.html
 
 ---
 
 # What Is Memory?
 
-It's like a **spreadsheet for integers**. Memory has many *addresses* that hold *values*.
+A computer must "remember" the data it is working with.
+
+Memory is like a **spreadsheet for integers**. Memory has many *addresses* that hold *values*.
 
 |Address|Value (decimal)|
 |---	|---	|
@@ -116,7 +123,7 @@ It's like a **spreadsheet for integers**. Memory has many *addresses* that hold 
 
 ---
 
-# The Importance of Symbols
+# Symbols and Signals
 
 Computers require **symbolic thinking**.
 
@@ -129,15 +136,17 @@ Computers require **symbolic thinking**.
 
 At a low level, **Computers _only_ understand numbers**!
 
-All concepts must be symbolized as numbers or sequences of numbers.
+All concepts must be symbolized as numbers or sequences of numbers to be useful.
 
 ---
 
 # What Is a Processor?
 
-Performs calculations and actions, usually with the contents of memory addresses.
+Performs calculations and actions using contents of memory.
 
-Example: Read address, write address, **execute address*.
+Example: Read address, write address, **execute address**.
+
+We will come back to this in a moment.
 
 ---
 
@@ -155,8 +164,6 @@ What's going on inside the chip?
 
 # What Just Happened?
 
-http://cs-alb-pc3.massey.ac.nz/notes/59304/l15.html
-
 1. Computer senses an incoming signal
 2. Computer stores signal value in a memory address
 3. Computer processes the value, often storing the result in a new address
@@ -166,37 +173,108 @@ http://cs-alb-pc3.massey.ac.nz/notes/59304/l15.html
 
 # More Examples of I/O Operations
 
-https://www.youtube.com/watch?v=vAhp_LzvSWk
-https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ATMEGA328P-PU.jpg/1200px-ATMEGA328P-PU.jpg
-http://www.digital-circuitry.com/IMAGES/webpage/MyLAB/Z80_DATA_BUS.jpg
-http://www.digital-circuitry.com/IMAGES/webpage/MyLAB/Z80_ADDRESS_BUS.jpg
+Memory operations in the old days: https://www.youtube.com/watch?v=vAhp_LzvSWk
 
 ---
 
-# Machine Language, Assembly, High Level Language
+# Programming Languages
 
-http://oldcomputers.net/altair-8800.html
-https://www.computerhope.com/jargon/p/punccard.htm
+ * Now that we understand the hardware, let's focus on human computer interaction.
+ * Any questions on what we've covered so far?
+ * We will cover machine language and assembly, but only to the extent needed for Forth.
+
+If you are a programmer, but have never worked in a language with manual memory management (C, C++, Forth, Rust, Fortran, etc.), some of these concepts will be new to you.
 
 ---
 
-# Recap: How do computers actually _do_ things?
+# Computer Languages and the "Instruction Cycle"
 
-http://jayakarthigeyan.blogspot.com/2014/08/fire-alarm-using-arduino.html
-Input:
-Sense things -> digitize -> send to input line
-Do things    -> read output -> decode -> send to real word (motors, speakers, etc)
+Remember when we said that *computers can only operate on numeric symbols?*
+
+The processor follows this sequence, over and over:
+
+1. **Fetch**: Get a value from a memory address.
+2. **Decode**: Determine what the number _symbolizes_ (Read, Write, Jump, etc.)
+3. **Execute**: Perform the operation. Ex: "Add contents of cell 1 and cell 2".
+4. **Repeat**: This cycle is repeated continually. Some architectures feature a HALT instruction.
+
+The lowest level computer language is *Machine Language*.
+
+---
+
+# Machine Language Example
+
+No pneumonics. Can be directly placed into memory without any changes.
+
+|Address |Instruction | Description |
+|--- |--- |---|
+|0 |00000001 | Turn pin 1 (connected to LED bulb) on |
+|1 |00000010 | sleep for 2 seconds |
+|2 |00000001 | Turn pin 1 off |
+|3 |00000010 | If pin2 is off, skip next line |
+|4 |00000000 | Halt |
+|5 |01010101 | Jump to address 0 |
+
+Real world example: https://www.computerhope.com/jargon/p/punccard.htm
+
+Credit: https://chortle.ccsu.edu/java5/Notes/chap04/ch04_4.html
+
+---
+
+# Assembly Language
+
+One up from machine language is _assembly language_.
+
+Like machine language, it has a one-to-one correspondence to the computer's instruction codes.
+
+Unlike machine language, it uses pneumonic based (human readable) codes to represent each instruction.
+
+An _assembler_ is required to translate a pneumonic code to machine language.
+
+**NEXT:** See an arcade game written in assembly.
+
+---
+
+# Snake Game Written in Assembly
+
+ * Someone wrote a [snake arcade game](https://fukuchi.org/works/shortshort/6502snake/snake.html) using 6502 assembly.
+ * Move the snake via `W, A, S, D` keys
+ * Be sure to see the "notes" section.
+
+---
+
+# High Level Languages (HLLs)
+
+ * Still need to exist as machine language, but do so without a 1-to-1 correspondence to machine language.
+ * Can use concepts that are easier for _humans_ to understand.
+   * Can use words instead of numbers.
+   * Don't always need to think in terms of memory addresses and data lines.
+
+```
+set myUrl to "http://google.com"
+display dialog myUrl
+```
+
+---
+
+# Recap
+
+ * Numbers can represent real data (values) or a symbol representing an instruction.
+ * The real world interacts with software by sending signals to input lines, causing changes to values in memory.
+ * Software interacts with the real world by sending signals to output lines.
 
 ---
 
 # Start Learning Forth Now
 
+---
+
 # Lab Setup
-   * Terminal
-   * Text editor
-   * Check that all the expected words are there
-   * Install a "whoops" marker
-   * Talk about lecture/lab format
+ * Terminal
+ * Text editor
+ * Check that all the expected words are there
+ * Install a "whoops" marker
+ * Talk about lecture/lab format
 
 # Hello, World!
   * LAB: `." Hello, world!"`
