@@ -52,13 +52,14 @@ Let's start that now.
  * Even the tiniest devices can run Forth- easily ported to new systems.
  * _Very_ resource efficient (minimal memory requirements)
  * "Low Floor, High Ceiling"
+ * Neat: [Jones Forth](https://github.com/AlexandreAbreu/jonesforth)
 
 ---
 
 # Real World Forth
 
  * [Power Plant Control Systems](https://www.forth.com/solar-power-plant-controls/)
- * [Philae Lander](https://en.wikipedia.org/wiki/Philae_(spacecraft))
+ * [Philae Lander](https://en.wikipedia.org/wiki/Philae_spacecraft)
  * [Hobbyist Projects](https://www.rs-online.com/designspark/fignition-gets-a-keyboard)
  * GA 144
 
@@ -399,6 +400,9 @@ You can enter a search term after `words`. Ex: `words "` returns `."`
 
  * Sometimes, the stack is not in the order you want.
  * Some words can "rearrange" the stack:
+ * **NEXT:** All the stack re-arranging words
+
+---
 
 |word|effect|hint|
 |--- |--- |--- |
