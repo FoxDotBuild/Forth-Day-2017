@@ -21,11 +21,19 @@
  * There will be A few lab experiments.
 
 ---
+
+# Dry Run Timer
+
+Let's start that now.
+
+---
+
 # History
 
  * Chuck Moore
  * First Forth projects
  * Rise of popularity in the early 80's
+ * Characteristics (procedural, concatenative, untyped)
  * Forth today
 
 ---
@@ -64,10 +72,17 @@
  * Makes you a better programmer
  * Influences your understanding of other languages.
  * Low level concepts are easier to understand.
+ * If you can dodge a wrench, you can dodge a ball.
 
 ---
 
-# Minimalism
+# How Does Forth Compare to X?
+
+[This](http://hammerprinciple.com/therighttool/items/forth)
+
+---
+
+# Forth Minimalism
 
  * No Garbage Collector
  * No Floating Point Numbers (sometimes)
@@ -204,7 +219,7 @@ The lowest level computer language is *Machine Language*.
 
 # Machine Language Example
 
-No pneumonics. Can be directly placed into memory without any changes.
+Not (easily) human readable. Can be directly placed into memory without any changes.
 
 |Address |Instruction | Description |
 |--- |--- |---|
@@ -245,6 +260,7 @@ An _assembler_ is required to translate a pneumonic code to machine language.
 
 # High Level Languages (HLLs)
 
+ * With the exception of firmware developers, this is what everyone uses today (C, Java, etc.)
  * Still need to exist as machine language, but do so without a 1-to-1 correspondence to machine language.
  * Can use concepts that are easier for _humans_ to understand.
    * Can use words instead of numbers.
@@ -267,31 +283,232 @@ display dialog myUrl
 
 # Start Learning Forth Now
 
+We now have enough understanding of the hardware to move forward.
+
+Any questions about hardware before we continue?
+
 ---
 
 # Lab Setup
+
  * Terminal
  * Text editor
  * Check that all the expected words are there
  * Install a "whoops" marker
  * Talk about lecture/lab format
 
-# Hello, World!
-  * LAB: `." Hello, world!"`
-# Basic Math
-  * LAB: 3rd grade math class
-# The Stack
-http://www.alcula.com/calculators/rpn/
+---
 
-   * LAB: `.s`, `.` and the stack
-   * LAB: RPN, `+`, `-`, `dup`, `swap`
+# Funny Calculators in Math Class
+
+Let's [do some math](http://www.alcula.com/calculators/rpn/)
+
+ * Actually called the "data stack", since it is not the only stack.
+ * You never need parenthesis.
+ * Copy/pasting code between locations is easier.
+ * The Stack is not an abstraction on most architectures. It exists on "bare metal".
+ * It's easy to go backwards or "backtrack" your work.
+
+**NEXT:** Let's do math in Forth
+
+---
+
+# Exercise: Basic Math
+
+ * Use the enter key to "push" a new number on the stack. Use spaces as a delimiter.
+   * `1 2 3 <enter>`
+ * Use the period character to "pop" the top off the stack and view it. (`.`)
+   * `4 5 6 . . .` prints `6 5 4`
+ * Perform math via `+`, `-`, `*`, and `/` (integer division only)
+   * 2 + 2 is `2 2 + .` in forth
+
+---
+
+# More About (FIFO) Stacks
+
+[diagram](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html)
+
+ * First in, first out.
+ * The primary data structure in Forth.
+
+---
+
+# The Serial Line
+
+ * Interactive programming and debugging
+ * Easier setup because you don't need complicated "tool chains" or cross compilers.
+ * Everything resides on the host.
+ * Most systems are case insensitive (not ours).
+
+---
+
+# LAB: Mandatory "Hello, World!"
+
+In forth, functions and methods are called "words"-
+reusable sequences of code. Let's make our `Hello, world!` code more DRY*
+
+ * The space between `."` and `Hello` is significant!
+
+```
+\ Backslash is a comment in Forth
+\ Defines a new "dictionary entry" of `hello`.
+: hello
+  \ Print to serial line
+  ." Hello, world!"
+;
+```
+
+---
+
+# How many words are there?
+
+See a list of words by using the `words` word.
+
+You can enter a search term after `words`. Ex: `words "` returns `."`
+
+---
+
+# Markers and The Dictionary
+
+ * Dictionary: A linked list of word definitions.
+ * Markers: Set a "bookmark" in the dictionary when you need to reqind.
+
+---
+
+# Naming Rules
+
+ * All characters except space and carriage return are legal in Forth word names.
+ * You will see words with symbols in them frequently. Eg: `.`, `!`, `@`.
+
+---
+
+# Lab: Add6 Word
+
+**SCENARIO:** You find yourself adding the number 7 to other numbers very often.
+
+```
+
+: add7 7 + ;
+12 add7 \ Pushes `19` on stack.
+
+```
+
+---
+
+# Stack Juggling
+
+ * Sometimes, the stack is not in the order you want.
+ * Some words can "rearrange" the stack:
+
+|word|effect|hint|
+|--- |--- |--- |
+|`SWAP`|A B -> B A||
+|`ROT`|A B C -> B C A|(rotate)|
+|`OVER`|A B -> A B A||
+|`TUCK`|A B -> B A B||
+|`DUP`|A -> A A||
+
+Let's try these now.
+
+---
+
+# Comparisons and Flags
+
+ * `=`, `<`, `>`, `<>`
+ * 0 is `true`
+ * Nonzero (usually -1) is `false`
+
+---
+
+# ...IF...ELSE...THEN...
+
+Forth has flow control, like every other language.
+
+```
+
+: 7?
+  7 = IF
+    ." IT IS 7!"
+  ELSE
+    ." NOPE!"
+  THEN ;
+
+```
+
+**LAB:** What do `7 7?` and `8 7?` print?
+**TODO** Age calculator app
+
+---
+
+# Stack Comments
+
+ * Without documentation, things get hard to read.
+ * Luckily, we have [standards](https://forth-standard.org/standard/notation#subsection.2.2.2) for this stuff.
+
+---
+
+# More About Words
+
+ * Words can be redefined
+ * Words must be defined before they can be used
+ * FUN FACT: You could theoretically create words for numbers like `7`, but don't do that.
+
+---
+
+# Loops
+
+```
+
+  begin <CODE_TO_EXECUTE> <TEST_CONDITION> until
+
+```
+
+---
+
+# Example: Launch Timer
+
+```
+: second 1000 * ms ;
+: speak ( n -- n ) dup 1 second drop ;
+: decrement 1 - ;
+: less_than_zero? 0 < ;
+: blastoff! ." Blastoff!" ;
+: countdown ( n -- )
+  begin
+    speak
+    decrement
+    dup             \ Copy value for next loop
+    less_than_zero?
+  until ;
+
+: launch ( n --- ) countdown blastoff! ;
+
+```
+
+---
+
+# Variables
+
+---
+
+---
+# Not Covered
+
+ * `RECURSE`
+ * `BEGIN`
+ * `WHILE`
+ * `AGAIN`
+ * `UNTIL`
+ * `REPEAT`
+
+---
+
 # I/O
    * LAB: "Hello, {{ name }}"
    * LAB: "It's over {{ 9000 }}"
+
 # -------
-   * LAB: `words`
-   * LAB: Create your own words `: add2 2 + ; words`
-   * LAB: Redefine a word
+
    * LAB: Create a new marker
    * LAB: Create a constant
    * LAB: Create a variable
@@ -318,3 +535,4 @@ http://www.alcula.com/calculators/rpn/
  * Dictionary structure
  * recursion
  * Stephen's Book
+ * Pictured Numeric Input
