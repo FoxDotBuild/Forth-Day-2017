@@ -300,7 +300,7 @@ Any questions about hardware before we continue?
 
 ---
 
-# Funny Calculators in Math Class
+# Funny Calculators
 
 Let's [do some math](http://www.alcula.com/calculators/rpn/)
 
@@ -314,7 +314,7 @@ Let's [do some math](http://www.alcula.com/calculators/rpn/)
 
 ---
 
-# Exercise: Basic Math
+# Do Basic Math
 
  * Use the enter key to "push" a new number on the stack. Use spaces as a delimiter.
    * `1 2 3 <enter>`
@@ -325,7 +325,7 @@ Let's [do some math](http://www.alcula.com/calculators/rpn/)
 
 ---
 
-# More About (FIFO) Stacks
+# About (FIFO) Stacks
 
 [diagram](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html)
 
@@ -343,7 +343,7 @@ Let's [do some math](http://www.alcula.com/calculators/rpn/)
 
 ---
 
-# LAB: Mandatory "Hello, World!"
+# Mandatory "Hello, World!"
 
 In forth, functions and methods are called "words"-
 reusable sequences of code. Let's make our `Hello, world!` code more DRY*
@@ -427,16 +427,19 @@ Let's try these now.
 # ...IF...ELSE...THEN...
 
 Forth has flow control, like every other language.
+What is flow control, really?
+
+**NEXT:** Example
+
+---
 
 ```
-
 : 7?
   7 = IF
     ." IT IS 7!"
   ELSE
     ." NOPE!"
   THEN ;
-
 ```
 
 **LAB:** What do `7 7?` and `8 7?` print?
@@ -473,7 +476,7 @@ Forth has flow control, like every other language.
 
 ```
 : second 1000 * ms ;
-: speak ( n -- n ) dup 1 second drop ;
+: speak ( n -- n ) dup 1 second . ;
 : decrement 1 - ;
 : less_than_zero? 0 < ;
 : blastoff! ." Blastoff!" ;
@@ -491,28 +494,41 @@ Forth has flow control, like every other language.
 
 ---
 
-# Variables
-
----
-
----
 # Not Covered
 
- * `RECURSE`
- * `BEGIN`
- * `WHILE`
- * `AGAIN`
- * `UNTIL`
- * `REPEAT`
+There are other ways to loop:
+
+`RECURSE`, `BEGIN`, `WHILE`, `AGAIN`, `UNTIL`, `REPEAT`
+
+---
+
+# Variables
+
+**TODO**
+
+---
+
+# Next steps (part II?)
+
+ * "big" Forths
+ * Execution tokens
+ * Vectored execution
+ * Compile vs. interpret
+ * inner vs. outter interpreter
+ * Defining words
+ * Tasks
+ * Vocabularies
+ * Dictionary structure
+ * recursion
+ * Stephen's Book
+ * Pictured Numeric Input
 
 ---
 
 # I/O
+
    * LAB: "Hello, {{ name }}"
    * LAB: "It's over {{ 9000 }}"
-
-# -------
-
    * LAB: Create a new marker
    * LAB: Create a constant
    * LAB: Create a variable
@@ -526,17 +542,3 @@ Forth has flow control, like every other language.
    * LAB: PWM write
    * LAB PWM read
    * LAB: Fire alarm
-
-# Next steps (part II?)
- * "big" Forths
- * Execution tokens
- * Vectored execution
- * Compile vs. interpret
- * inner vs. outter interpreter
- * Defining words
- * Tasks
- * Vocabularies
- * Dictionary structure
- * recursion
- * Stephen's Book
- * Pictured Numeric Input
